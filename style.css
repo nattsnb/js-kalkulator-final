@@ -36,7 +36,7 @@
     margin-top: 20px;
 }
 
-#big-buttons-wrapper {
+#wide-buttons-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -54,6 +54,6 @@
     width: 50px;
 }
 
-.big-button {
+.wide-button {
     height: 60px;
 }
