@@ -10,65 +10,53 @@ const divideButton = document.querySelector("#divide-button");
 const resultButton = document.querySelector("#result-button");
 const clearButton = document.querySelector("#clear-button");
 
-let commandNumber = 0;
-
 if (calcInput) {
     plusButton.addEventListener("click", function (){
-        if (commandNumber !==0) {
+        if (lineTwo.innerHTML !== "") {
             return;
         }
         lineOne.innerHTML = calcInput.value;
         lineTwo.innerHTML = "+";
         calcInput.value = "";
-        commandNumber = 1;
     })
     minusButton.addEventListener("click", function (){
-        if (commandNumber !==0) {
+        if (lineTwo.innerHTML !== "") {
             return;
         }
         lineOne.innerHTML = calcInput.value;
         lineTwo.innerHTML = "-";
         calcInput.value = "";
-        commandNumber = 1;
     })
     multiplyButton.addEventListener("click", function (){
-        if (commandNumber !==0) {
+        if (lineTwo.innerHTML !== "") {
             return;
         }
         lineOne.innerHTML = calcInput.value;
         lineTwo.innerHTML = "*";
         calcInput.value = "";
-        commandNumber = 1;
     })
     divideButton.addEventListener("click", function (){
-        if (commandNumber !==0) {
+        if (lineTwo.innerHTML !== "") {
             return;
         }
         lineOne.innerHTML = calcInput.value;
         lineTwo.innerHTML = "/";
         calcInput.value = "";
-        commandNumber = 1;
     })
-}
-
-if (calcInput) {
     resultButton.addEventListener("click", function (){
-        if (commandNumber !==1) {
+        if (lineFour.innerHTML !== "" || lineTwo.innerHTML === "") {
             return;
         }
         lineThree.innerHTML = calcInput.value;
         lineFour.innerHTML = "=";
         if (lineTwo.innerHTML === "+") {
             calcInput.value = Number(lineOne.innerHTML) + Number(lineThree.innerHTML);
-            commandNumber = 2;
         }
         if (lineTwo.innerHTML === "-") {
             calcInput.value = Number(lineOne.innerHTML) - Number(lineThree.innerHTML);
-            commandNumber = 2;
         }
         if (lineTwo.innerHTML === "*") {
             calcInput.value = Number(lineOne.innerHTML) * Number(lineThree.innerHTML);
-            commandNumber = 2;
         }
         if (lineTwo.innerHTML === "/") {
             if (lineThree.innerHTML === "0" || lineThree.innerHTML === "") {
@@ -77,11 +65,9 @@ if (calcInput) {
                 lineThree.innerHTML = "ERROR";
                 lineFour.innerHTML = "";
                 calcInput.value = "";
-                commandNumber = 2;
                 return;
             }
             calcInput.value = Number(lineOne.innerHTML) / Number(lineThree.innerHTML);
-            commandNumber = 2;
         }
     })
 }
@@ -93,7 +79,6 @@ function clearTheCalc() {
         lineThree.innerHTML = "";
         lineFour.innerHTML = "";
         calcInput.value = "";
-        commandNumber = 0;
     })}
 
 
