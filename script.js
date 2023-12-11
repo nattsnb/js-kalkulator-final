@@ -10,33 +10,43 @@ const divideButton = document.querySelector("#divide-button");
 const resultButton = document.querySelector("#result-button");
 const clearButton = document.querySelector("#clear-button");
 
-let inputType = typeof Number(calcInput.value);
-
-if (inputType === "number" && lineOne.innerHTML === "") {
+if (calcInput) {
     plusButton.addEventListener("click", function (){
+        if (lineTwo.innerHTML !== "") {
+            return;
+        }
         lineOne.innerHTML = calcInput.value;
         lineTwo.innerHTML = "+";
         calcInput.value = "";
     })
     minusButton.addEventListener("click", function (){
+        if (lineTwo.innerHTML !== "") {
+            return;
+        }
         lineOne.innerHTML = calcInput.value;
         lineTwo.innerHTML = "-";
         calcInput.value = "";
     })
     multiplyButton.addEventListener("click", function (){
+        if (lineTwo.innerHTML !== "") {
+            return;
+        }
         lineOne.innerHTML = calcInput.value;
         lineTwo.innerHTML = "*";
         calcInput.value = "";
     })
     divideButton.addEventListener("click", function (){
+        if (lineTwo.innerHTML !== "") {
+            return;
+        }
         lineOne.innerHTML = calcInput.value;
         lineTwo.innerHTML = "/";
         calcInput.value = "";
     })
-}
-
-if (inputType === "number") {
     resultButton.addEventListener("click", function (){
+        if (lineFour.innerHTML !== "" || lineTwo.innerHTML === "") {
+            return;
+        }
         lineThree.innerHTML = calcInput.value;
         lineFour.innerHTML = "=";
         if (lineTwo.innerHTML === "+") {
@@ -49,9 +59,16 @@ if (inputType === "number") {
             calcInput.value = Number(lineOne.innerHTML) * Number(lineThree.innerHTML);
         }
         if (lineTwo.innerHTML === "/") {
+            if (lineThree.innerHTML === "0" || lineThree.innerHTML === "") {
+                lineOne.innerHTML = "";
+                lineTwo.innerHTML = "";
+                lineThree.innerHTML = "ERROR";
+                lineFour.innerHTML = "";
+                calcInput.value = "";
+                return;
+            }
             calcInput.value = Number(lineOne.innerHTML) / Number(lineThree.innerHTML);
         }
-
     })
 }
 
